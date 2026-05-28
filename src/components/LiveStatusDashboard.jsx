@@ -12,7 +12,8 @@ const LiveStatusDashboard = ({ deploymentId, onNewDeployment }) => {
 
     const fetchStatus = async () => {
       try {
-        const response = await axios.get(`http://localhost:5000/api/status/${deploymentId}`);
+        const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:5000';
+        const response = await axios.get(`${apiUrl}/api/status/${deploymentId}`);
         const data = response.data;
         setDeploymentData(data);
         setStatus(data.status);
